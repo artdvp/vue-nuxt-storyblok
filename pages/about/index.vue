@@ -1,28 +1,52 @@
 <template>
   <section id="about-page">
-      <h1>Hi, I'm Artdvp</h1>
+      <h1>{{ title }}</h1>
       <div class="about-profile folded-img">
-          <img class="" src="https://avatars0.githubusercontent.com/u/12493732?v=4" alt="Avatar Profile">
+          <img class="" :src="profileImg" alt="Avatar Profile">
       </div>
       
-      <pre class="about-content">I'm a bunch of highly motivated and learning new things, 
-Blogging about tech stuff.</pre>
+      <pre class="about-content">{{ content }}</pre>
   </section>
 </template>
 
-<style scope>
+<script>
+export default {
+  asyncData(context) {
+    return context.app.$storyapi
+      .get("cdn/stories/about", {
+        version: "draft"
+      })
+      .then(res => {
+        console.log(res.data);
+        return {
+          title: res.data.story.content.title,
+          content: res.data.story.content.content,
+          profileImg: res.data.story.content.profile_img.url
+        };
+      });
+  }
+};
+</script>
+
+<style>
 #about-page {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 1rem;
-  text-align: center;
   font-family: "Lato", sans-serif;
   flex-direction: column;
+  margin: auto;
+  width: 80%;
+  max-width: 500px;
 }
 
-.about-profile {
-  width: 200px;
+#about-page p {
+  white-space: pre-wrap;
+}
+
+.about-content {
+  font-size: 23px;
 }
 
 .about-profile img {
@@ -30,15 +54,17 @@ Blogging about tech stuff.</pre>
   border-radius: 3%;
   box-shadow: 1px 1px 5px 1px rgb(0, 0, 0, 0.5);
 }
-
-.about-content {
-  font-size: 23px;
-}
-
+/*
 .folded-img {
   position: relative;
   color: #fff;
   overflow: hidden;
+}
+
+
+
+.about-profile {
+  width: 200px;
 }
 
 .folded-img:before {
@@ -56,5 +82,5 @@ Blogging about tech stuff.</pre>
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
   display: block;
   width: 0;
-}
+}*/
 </style>

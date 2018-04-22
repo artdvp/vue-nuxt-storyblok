@@ -54,7 +54,7 @@ module.exports = {
       {
         accessToken:
           process.env.NODE_ENV == "production"
-            ? process.env.API_KEY
+            ? process.env.ACCESS_TOKEN
             : process.env.STORY_BLOK_DEV,
         cacheProvider: "memory"
       }
@@ -66,7 +66,7 @@ module.exports = {
       return axios
         .get(
           "https://api.storyblok.com/v1/cdn/stories?version=published&token=" +
-            process.env.API_KEY +
+            process.env.ACCESS_TOKEN +
             "&starts_with=blog&cv=" +
             Math.floor(Date.now() / 1e3)
         )

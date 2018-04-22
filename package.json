@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.0.0",
+    "dotenv": "^5.0.1",
     "nuxt": "^1.0.0",
     "storyblok-nuxt": "0.0.3"
   },

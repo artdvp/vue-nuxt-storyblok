@@ -33,3 +33,4 @@ link Demo [vue-nuxt-storyblok](https://vue-nuxt-storyblok.netlify.com/)
 
 * [x] 2018-03-22 : [The Frontend | Nuxt.js & Storyblok - Building a Complete Blog #1](https://www.youtube.com/watch?v=Dc_5BpIB4X4)
 * [x] 2018-03-27 : [Adding Storyblok CMS | Nuxt.js & Storyblok - Building a Complete Blog #2](https://www.youtube.com/watch?v=UIh4P5rNjac)
+* [ ] 2018-04-21 : [Storyblok Live Preview! | Nuxt.js & Storyblok - Building a Complete Blog #3](https://www.youtube.com/watch?v=Yq6Ddu_QAiY)

@@ -1,5 +1,5 @@
 <template>
-  <div id="post">
+  <div id="post" v-editable="blok">
       <div class="post-thumbnail" :style="{backgroundImage: 'url(' + image + ')'}"></div>
       <section class="post-content">
         <h1>{{ title }}</h1>
@@ -13,16 +13,23 @@ export default {
   asyncData(context) {
     return context.app.$storyapi
       .get("cdn/stories/blog/" + context.params.postId, {
-        version: "draft"
+        version: context.isDev ? "draft" : "published"
       })
       .then(res => {
         console.log(res.data);
         return {
+          blok: res.data.story.content,
           image: res.data.story.content.thumbnail,
           title: res.data.story.content.title,
           content: res.data.story.content.content
         };
       });
+  },
+  mounted() {
+    this.$storyblok.init();
+    this.$storyblok.on("change", () => {
+      location.reload(true);
+    });
   }
 };
 </script>
@@ -36,12 +43,12 @@ export default {
 }
 
 .post-content {
-    width: 80%;
-    max-width: 500px;
-    margin: auto;
+  width: 80%;
+  max-width: 500px;
+  margin: auto;
 }
 
 .post-content p {
-    white-space: pre-line;
+  white-space: pre-line;
 }
 </style>
